@@ -18,5 +18,20 @@ module.exports = {
     accessToken,
     defaultLanguage: 'en',
     contentTypeDir: 'example/pages'
+  },
+  build: {
+    babel: {
+      presets ({ isServer }) {
+        return [
+          [
+            require.resolve('@nuxt/babel-preset-app'),
+            {
+              buildTarget: isServer ? 'server' : 'client',
+              corejs: { version: 3 }
+            }
+          ]
+        ]
+      }
+    }
   }
 }
